@@ -30,6 +30,10 @@
         document.getElementsByTagName('head')[0].appendChild(link);
 
 
+        function updateText(content){
+            document.getElementsById('textSample').innerHtml(content);
+        }
+
     </script>
 
     <!--[if lt IE 9]>
@@ -38,6 +42,7 @@
     <!-- Integration  myscript-math-web -->
     <script src="bower_components/webcomponentsjs/webcomponents-lite.js"></script>
     <link rel="import" href="bower_components/myscript-math-web/myscript-math-web.html">
+    <link rel="import" href="bower_components/myscript-text-web/myscript-text-web.html">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.js"></script>
     <style>
@@ -50,7 +55,7 @@
     </style>
 </head>
 
-<body>
+<body >
 
 <div class="reveal">
 
@@ -83,38 +88,130 @@
                 <img src="img/Cloud01.svg" class="logo-up ">
             </div>
         </section>
-
-        <section data-background-image="img/ms-usecases.png" data-background-size="50%">
-
-
-            </section>
-
         <section>
+            <myscript-text-web class="stretch"
+                language="fr_FR"
+                applicationkey="22eda92c-10af-40d8-abea-fd4093c17d81"
+                hmackey="a1fa759f-b3ce-4091-9fd4-d34bb870c601"
+                host="webdemo.myscript.com">
+            </myscript-text-web>
+        </section>
+        <!--section>
+            <h3>Reconnaissance de texte</h3>
+            <iframe class="ace stretch">
+<myscript-text-web
+    language="fr_FR"
+    applicationkey="22eda92c-10af-40d8-abea-fd4093c17d81"
+    hmackey="a1fa759f-b3ce-4091-9fd4-d34bb870c601">
+</myscript-text-web>
+            </iframe>
+        </section-->
+        <section id="exemple-text">
+            <h3>Reconnaissance de texte</h3>
+        </section>
 
-                <pre><code data-trim data-noescape>
-            textInput =
-        {
-        "textParameter":{
-        "language":"en_US",
-        "textInputMode":"CURSIVE"
-        },
-        "inputUnits":[
-        {
-        "textInputType":"MULTI_LINE_TEXT",
-        "components":[
-            {
-            "type":"stroke",
-            "x":[438,439,439],
-            "y":[319.5,313.5,312.5]
-            }
-            ]
-        }
-    ]
-    }
-                </code></pre>
+        <section data-background-image="img/hieroglyphs.svg" data-background-size="70%" data-background-color="#D6E4FF">
+        </section>
+        <section  data-background-image="img/code_c.png" data-background-size="100%">
+        </section>
+        <section data-background-image="img/write61.svg" data-background-size="40%" data-background-color="#D6E4FF">
         </section>
         <section>
-            <h3>Exemple</h3>
+            <pre>
+                <code data-trim data-noescape>
+                GET .../do/recognition
+                </code>
+            </pre>
+                <pre><code data-trim data-noescape>
+            textInput =  {
+        "textParameter":{
+            "language":"en_US",
+            "textInputMode":"CURSIVE"},
+        "inputUnits":[{
+            "textInputType":"MULTI_LINE_TEXT",
+            "components":[{
+                "type":"stroke",
+                "x":[438,439,439,...],
+                "y":[319.5,313.5,312.5,...]
+            },{...}]}]}
+                </code></pre>
+        </section>
+        <section data-background-image="img/pens3.svg" data-background-size="30%" data-background-color="#D6E4FF">
+        </section>
+        <section>
+            <pre>
+                <code data-trim data-noescape>
+var paper = new MyScript.InkPaper(inkPaper, options, function (data, error) {
+    result.innerHTML = '';
+    if (error) { result.innerHTML = error;}
+    if (data) {
+    // Display the selected text candidate
+    result.innerHTML = data.getTextDocument().getTextSegment().getSelectedCandidate().getLabel();
+}});
+document.getElementById('trash').addEventListener('click',
+    function () {paper.clear();}, false);
+        // ... undo, redo ...
+var languages = document.getElementById('languages');
+        ...
+                </code>
+            </pre>
+        </section>
+        <section data-background-image="img/pen-7.svg" data-background-size="30%" data-background-color="#D6E4FF">
+        </section>
+        <section data-background-color="#FFE5B4">
+            <section>
+                <h2>Web-Components ?</h2>
+                <img src="img/logowc.svg" width="400px">
+            </section>
+            <section>
+                <h3><img class="icon" src="img/icon-htmlimports.png" width="30" height="30">HTML Imports</h3>
+                 <pre>
+                    <code data-trim data-noescape>
+                        &lt;link rel="import" href="bow../mon-web-components/components.html"&gt;
+                    </code>
+                </pre>
+                <pre>
+                    <code data-trim data-noescape>
+&lt;script type=&quot;text/javascript&quot; src=&quot;../q/q.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;../pepjs/dist/pep.min.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;./dist/monjs.min.js&quot;&gt;&lt;/script&gt;
+                    </code>
+                </pre>
+            </section>
+            <section>
+                <h3><img class="icon" src="img/icon-templates.png" width="30" height="30">Templates</h3>
+                <pre>
+                    <code data-trim data-noescape>
+&lt;template id=&quot;mytemplate&quot;&gt;
+    &lt;img src=&quot;&quot; alt=&quot;great image&quot;&gt;
+    &lt;div class=&quot;comment&quot;&gt;&lt;/div&gt;
+&lt;/template&gt;
+                    </code>
+                </pre>
+            </section>
+            <section>
+                <h3><img class="icon" src="img/icon-shadowdom.png" width="30" height="30">Shadow DOM</h3>
+                <blockquote>Shadow DOM provides encapsulation for the JavaScript, CSS, and templating in a Web Component. Shadow DOM makes it so these things remain separate from the DOM of the main document...</blockquote>
+                <p>Source : Mozilla Developer Network</p>
+            </section>
+            <section >
+                <h3><img class="icon" src="img/icon-customelements.png" width="30" height="30">Custom Elements</h3>
+                <pre>
+                    <code data-trim data-noescape>
+&lt;mon-super-element&gt;
+    &lt;un-sous-element/&gt;
+&lt;/mon-super-element&gt;
+                    </code>
+                </pre>
+            </section>
+
+        </section>
+        <section data-background-iframe="myscript-math-web.txt">
+        </section>
+        <section data-background-iframe="http://myscript.github.io/myscript-math-web/components/myscript-math-web/">
+        </section>
+        <!--section>
+            <h3>Reconnaissance de formules mathématiques</h3>
             <iframe class="ace stretch" data-onchange="console.log(editor.getValue())">
 <myscript-math-web class="stretch"
     applicationkey="22eda92c-10af-40d8-abea-fd4093c17d81"
@@ -122,103 +219,31 @@
     host="webdemo.myscript.com">
 </myscript-math-web>
             </iframe>
+        </section-->
+        <section id="exemple-math">
+            <h3>Reconnaissance de formules mathématiques</h3>
         </section>
-        <section>
-            <myscript-math-web class="stretch"
-                               applicationkey="22eda92c-10af-40d8-abea-fd4093c17d81"
-                               hmackey="a1fa759f-b3ce-4091-9fd4-d34bb870c601"
-                               host="webdemo.myscript.com">
-            </myscript-math-web>
-
-
+        <section id="mathTargetElement">
         </section>
-        <section>
-            <h2>Petit titre</h2>
-            <ul class="stretch">
-                <li>coucou</li>
-                <li>bla bla</li>
-
-            </ul>
+        <section data-background-image="img/GitHub_Logo.png" data-background-size="50%">
         </section>
 
+        <section data-background-image="img/ms-usecases.png" data-background-size="50%">
+        </section>
 
         <section>
-            <h1>Reveal.js</h1>
-            <h3>The HTML Presentation Framework</h3>
-            <p>
-                <small>Created by <a href="http://hakim.se">Hakim El Hattab</a> / <a href="http://twitter.com/hakimel">@hakimel</a>
-                </small>
-            </p>
+            <h1>MERCI</h1>
+            <h3>@padewitte</h3>
+            <h3>dev.myscript.com</h3>
         </section>
 
-        <section id="csssnip-slide">
-            <h2>Hello There</h2>
-            <p>
-                reveal.js enables you to create beautiful interactive slide decks using HTML. This presentation will
-                show you examples of what it can do.
-            </p>
-        </section>
-        <section>
-            <h1>Drawing</h1>
-            <div class="tools">
-                <a href="#colors_sketch" data-download="png" style="float: right; width: 100px;">Download</a>
-            </div>
-            <canvas id="colors_sketch" width="800" height="300"></canvas>
-            <script type="text/javascript">
-                $(function () {
-                    $.each(['#f00', '#ff0', '#0f0', '#0ff', '#00f', '#f0f', '#000', '#fff'], function () {
-                        $('#colors_demo .tools').append("<a href='#colors_sketch' data-color='" + this + "' style='width: 10px; background: " + this + ";'></a> ");
-                    });
-                    $.each([3, 5, 10, 15], function () {
-                        $('#colors_demo .tools').append("<a href='#colors_sketch' data-size='" + this + "' style='background: #ccc'>" + this + "</a> ");
-                    });
-                    $('#colors_sketch').sketch();
-                });
-            </script>
 
-        </section>
-
+<section>
+    <h3>Crédits photos</h3>
+        <div>Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a>             is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0">CC BY 3.0</a></div>
+</section>
         <!-- This section is a slide. -->
-        <section>
-            <h2>CSS Snippet Example</h2>
-            <div id="targetElement" class="stretch"></div>
 
-        </section>
-
-
-        <section style="text-align: left;">
-            <h1>THE END</h1>
-            <p>
-                - <a href="http://slides.com">Try the online editor</a> <br>
-                - <a href="https://github.com/hakimel/reveal.js">Source code &amp; documentation</a>
-            </p>
-        </section>
-
-        <section data-background-color="#f7f7f8">
-            <div class="techno-container">
-                <div>
-                    <h2>Text</h2>
-                    <img src="img/h3_text.png">
-
-                </div>
-                <div>
-                    <h2>Math</h2>
-                    <img src="img/h3_math.png">
-
-                </div>
-            </div>
-            <div class="techno-container">
-                <div>
-                    <img src="img/h3_shape.png">
-                    <h2>Shape</h2>
-                </div>
-                <div>
-                    <img src="img/h3_music.png">
-                    <h2>Music</h2>
-                </div>
-
-            </div>
-        </section>
 
     </div>
 
@@ -235,6 +260,8 @@
     Reveal.initialize({
         height: 768,
         width: 1360,
+        touch: true,
+
         controls: true,
         progress: true,
         history: true,
@@ -269,15 +296,24 @@
             {src: 'bower_components/reveal.js-ace/ace.js'},
             {
                 src: 'plugin/reveal-css-snippet/css-snippet.js', callback: function () {
-                document.getElementById('csssnip-slide').appendChild(RevealCSSSnippet({
-                    //Element I want it scoped too
-                    el: document.getElementById('targetElement'),
-                    //Default CSS I want automatically loaded in
+                document.getElementById('exemple-math').appendChild(RevealCSSSnippet({
+                    el: document.getElementById('mathTargetElement'),
                     cssValue: '<myscript-math-web  \n' +
                     '\tapplicationkey="22eda92c-10af-40d8-abea-fd4093c17d81" \n' +
                     '\thmackey="a1fa759f-b3ce-4091-9fd4-d34bb870c601"  \n' +
-                    '\thost="webdemo.myscript.com">  \n' +
+                    '\thost="webdemo.myscript.com"  \n' +
+                    '\tclass="stretch">  \n' +
                     '</myscript-math-web>'
+                }));
+                document.getElementById('exemple-text').appendChild(RevealCSSSnippet({
+                    el: document.getElementById('textTargetElement'),
+                    cssValue: '<myscript-text-web  \n' +
+                    '\tapplicationkey="22eda92c-10af-40d8-abea-fd4093c17d81" \n' +
+                    '\thmackey="a1fa759f-b3ce-4091-9fd4-d34bb870c601"  \n' +
+                    '\tlanguage="fr_FR"  \n' +
+                    '\thost="webdemo.myscript.com"' +
+                    '\tclass="stretch">  \n' +
+                    '</myscript-text-web>'
                 }));
             }
             }

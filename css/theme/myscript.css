@@ -296,6 +296,13 @@ body {
   border: none;
   box-shadow: none; }
 
+.reveal pre {
+  box-shadow: none;
+  font-size: 1.5rem; }
+
+.reveal pre code {
+  overflow: hidden; }
+
 .logo-container {
   align-items: stretch;
   display: flex;
@@ -304,6 +311,9 @@ body {
 .logo-up {
   position: relative;
   top: -12rem; }
+
+blockquote {
+  background-color: white !important; }
 
 .techno-container {
   align-items: stretch;
@@ -323,3 +333,16 @@ body {
   transition: .5s background-color;
   -webkit-clip-path: polygon(30px 0, calc(100% - 30px) 0, 100% 30px, 100% calc(100% - 30px), calc(100% - 30px) 100%, 30px 100%, 0 calc(100% - 30px), 0 30px);
   clip-path: polygon(30px 0, calc(100% - 30px) 0, 100% 30px, 100% calc(100% - 30px), calc(100% - 30px) 100%, 30px 100%, 0 calc(100% - 30px), 0 30px); }
+
+.left-children {
+  position: relative;
+  width: 50%;
+  max-width: 50%;
+  left: 35%; }
+
+.left-children > h4 {
+  text-align: left; }
+
+.icon {
+  margin: 0px !important;
+  padding: 0px 10px 0px 0px  !important; }

@@ -15,7 +15,8 @@
     "headjs": "~1.0.3",
     "myscript-math-web": "~1.1.0",
     "juicy-ace-editor": "~1.1.1",
-    "reveal.js-ace": "https://github.com/Gottox/reveal.js-ace.git"
+    "reveal.js-ace": "https://github.com/Gottox/reveal.js-ace.git",
+    "myscript-text-web": "~1.1.0"
   },
   "repository": {
     "type": "git",
