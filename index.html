@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>reveal.js – The HTML Presentation Framework</title>
+
+    <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+    <meta name="author" content="Hakim El Hattab">
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/myscript.css" id="theme">
+
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+
+
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+    <!-- Integration  myscript-math-web -->
+    <script src="bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+    <link rel="import" href="bower_components/myscript-math-web/myscript-math-web.html">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.js"></script>
+    <style>
+        #editor {
+            position: absolute;
+            width: 500px;
+            height: 400px;
+            text-align: left;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="reveal">
+
+    <!-- Any section element inside of this container is displayed as a slide
+
+    <h1>Composant polymer de reconnaissance d'écriture</h1>
+    -->
+    <div class="slides">
+        <section>
+            <img src="img/titreimg.png">
+            <br/>
+            <br/>
+            <div class="logo-container sub">
+                <img class=logo" height="250px" width="625px" src="img/myscript.svg">
+                <img class=logo" height="250px" width="625px" src="img/logodevfest.svg">
+            </div>
+        </section>
+        <section>
+
+
+            <div>
+                <h2>Pierre-Alban DEWITTE</h2>
+                <h3>@padewitte</h3>
+            </div>
+            <br/>
+
+            <div class="logo-container sub">
+                <img src="img/Steren_France_clip_art.svg" class="logo-up ">
+                <div style="background-image:url('img/napoleonas.jpg')" class="tinted-image"></div>
+                <img src="img/Cloud01.svg" class="logo-up ">
+            </div>
+        </section>
+
+        <section data-background-image="img/ms-usecases.png" data-background-size="50%">
+
+
+            </section>
+
+        <section>
+
+                <pre><code data-trim data-noescape>
+            textInput =
+        {
+        "textParameter":{
+        "language":"en_US",
+        "textInputMode":"CURSIVE"
+        },
+        "inputUnits":[
+        {
+        "textInputType":"MULTI_LINE_TEXT",
+        "components":[
+            {
+            "type":"stroke",
+            "x":[438,439,439],
+            "y":[319.5,313.5,312.5]
+            }
+            ]
+        }
+    ]
+    }
+                </code></pre>
+        </section>
+        <section>
+            <h3>Exemple</h3>
+            <iframe class="ace stretch" data-onchange="console.log(editor.getValue())">
+<myscript-math-web class="stretch"
+    applicationkey="22eda92c-10af-40d8-abea-fd4093c17d81"
+    hmackey="a1fa759f-b3ce-4091-9fd4-d34bb870c601"
+    host="webdemo.myscript.com">
+</myscript-math-web>
+            </iframe>
+        </section>
+        <section>
+            <myscript-math-web class="stretch"
+                               applicationkey="22eda92c-10af-40d8-abea-fd4093c17d81"
+                               hmackey="a1fa759f-b3ce-4091-9fd4-d34bb870c601"
+                               host="webdemo.myscript.com">
+            </myscript-math-web>
+
+
+        </section>
+        <section>
+            <h2>Petit titre</h2>
+            <ul class="stretch">
+                <li>coucou</li>
+                <li>bla bla</li>
+
+            </ul>
+        </section>
+
+
+        <section>
+            <h1>Reveal.js</h1>
+            <h3>The HTML Presentation Framework</h3>
+            <p>
+                <small>Created by <a href="http://hakim.se">Hakim El Hattab</a> / <a href="http://twitter.com/hakimel">@hakimel</a>
+                </small>
+            </p>
+        </section>
+
+        <section id="csssnip-slide">
+            <h2>Hello There</h2>
+            <p>
+                reveal.js enables you to create beautiful interactive slide decks using HTML. This presentation will
+                show you examples of what it can do.
+            </p>
+        </section>
+        <section>
+            <h1>Drawing</h1>
+            <div class="tools">
+                <a href="#colors_sketch" data-download="png" style="float: right; width: 100px;">Download</a>
+            </div>
+            <canvas id="colors_sketch" width="800" height="300"></canvas>
+            <script type="text/javascript">
+                $(function () {
+                    $.each(['#f00', '#ff0', '#0f0', '#0ff', '#00f', '#f0f', '#000', '#fff'], function () {
+                        $('#colors_demo .tools').append("<a href='#colors_sketch' data-color='" + this + "' style='width: 10px; background: " + this + ";'></a> ");
+                    });
+                    $.each([3, 5, 10, 15], function () {
+                        $('#colors_demo .tools').append("<a href='#colors_sketch' data-size='" + this + "' style='background: #ccc'>" + this + "</a> ");
+                    });
+                    $('#colors_sketch').sketch();
+                });
+            </script>
+
+        </section>
+
+        <!-- This section is a slide. -->
+        <section>
+            <h2>CSS Snippet Example</h2>
+            <div id="targetElement" class="stretch"></div>
+
+        </section>
+
+
+        <section style="text-align: left;">
+            <h1>THE END</h1>
+            <p>
+                - <a href="http://slides.com">Try the online editor</a> <br>
+                - <a href="https://github.com/hakimel/reveal.js">Source code &amp; documentation</a>
+            </p>
+        </section>
+
+        <section data-background-color="#f7f7f8">
+            <div class="techno-container">
+                <div>
+                    <h2>Text</h2>
+                    <img src="img/h3_text.png">
+
+                </div>
+                <div>
+                    <h2>Math</h2>
+                    <img src="img/h3_math.png">
+
+                </div>
+            </div>
+            <div class="techno-container">
+                <div>
+                    <img src="img/h3_shape.png">
+                    <h2>Shape</h2>
+                </div>
+                <div>
+                    <img src="img/h3_music.png">
+                    <h2>Music</h2>
+                </div>
+
+            </div>
+        </section>
+
+    </div>
+
+</div>
+
+<script src="lib/js/head.min.js"></script>
+<script src="js/reveal.js"></script>
+<script src="js/sketch.js"></script>
+
+<script>
+
+    // Full list of configuration options available at:
+    // https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+        height: 768,
+        width: 1360,
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        minScale: 1,
+        maxScale: 1,
+        transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+        // Optional reveal.js plugins
+        dependencies: [
+            {
+                src: 'lib/js/classList.js', condition: function () {
+                return !document.body.classList;
+            }
+            },
+            {
+                src: 'plugin/markdown/marked.js', condition: function () {
+                return !!document.querySelector('[data-markdown]');
+            }
+            },
+            {
+                src: 'plugin/markdown/markdown.js', condition: function () {
+                return !!document.querySelector('[data-markdown]');
+            }
+            },
+            {
+                src: 'plugin/highlight/highlight.js', async: true, callback: function () {
+                hljs.initHighlightingOnLoad();
+            }
+            },
+            {src: 'plugin/notes/notes.js', async: true},
+            {src: 'bower_components/reveal.js-ace/ace.js'},
+            {
+                src: 'plugin/reveal-css-snippet/css-snippet.js', callback: function () {
+                document.getElementById('csssnip-slide').appendChild(RevealCSSSnippet({
+                    //Element I want it scoped too
+                    el: document.getElementById('targetElement'),
+                    //Default CSS I want automatically loaded in
+                    cssValue: '<myscript-math-web  \n' +
+                    '\tapplicationkey="22eda92c-10af-40d8-abea-fd4093c17d81" \n' +
+                    '\thmackey="a1fa759f-b3ce-4091-9fd4-d34bb870c601"  \n' +
+                    '\thost="webdemo.myscript.com">  \n' +
+                    '</myscript-math-web>'
+                }));
+            }
+            }
+        ]
+    });
+
+    Reveal.addEventListener('slidechanged', function (event) {
+        // event.previousSlide, event.currentSlide, event.indexh, event.indexv
+        //console.log("SLide nb : "+event.currentSlide);
+
+    });
+
+</script>
+
+</body>
+</html>
