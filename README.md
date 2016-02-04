@@ -3,6 +3,9 @@
 Présentation donnée le 5 février 2016 au DEVFEST Paris.
 
 
+## Limite
+Les touchevents (evénements recus lorsqu'une surface tactile est utilisée) ne sont pas propagés au webcomponents. Je n'ai pas chercher à le faire fonctionner. 
+
 ## Installation
 
 ### Full setup
