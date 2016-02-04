@@ -42,6 +42,7 @@
     <!-- Integration  myscript-math-web -->
     <script src="bower_components/pepjs/dist/pep.min.js"></script>
     <script src="bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="bower_components/mathjs/dist/math.js"></script>
     <link rel="import" href="bower_components/myscript-math-web/myscript-math-web.html">
     <link rel="import" href="bower_components/myscript-text-web/myscript-text-web.html">
 
@@ -229,6 +230,29 @@ var languages = document.getElementById('languages');
         </section>
         <section id="mathTargetElement">
         </section>
+        <section>
+            <h3 id="exercise-title" class="visible" >Résoudre l'équation suivante <span id="equation-to-solve"></span></h3>
+            <myscript-math-web id="solving-zone"
+                applicationkey="22eda92c-10af-40d8-abea-fd4093c17d81"
+                hmackey="a1fa759f-b3ce-4091-9fd4-d34bb870c601"
+                host="webdemo.myscript.com"
+                hideresult
+                class="stretch">
+            </myscript-math-web>
+            <h1 id="bravo" class="hidden" >BRAVO !</h1>
+        </section>
+        <section id="bind-math">
+            <pre><code>
+var solvingZoneElement = document.getElementById("solving-zone");
+solvingZoneElement.classList.add("visible");
+solvingZoneElement.addEventListener("myscript-math-web-result", function () {
+    var result = solvingZoneElement.result["LATEX"];
+    if (result && result !== "" && result === "\\dfrac {x^{2}} {2}") {
+        showBravo();
+    }
+});
+            </code></pre>
+        </section>
         <section data-background-image="img/GitHub_Logo.png" data-background-size="50%">
         </section>
 
@@ -320,6 +344,16 @@ var languages = document.getElementById('languages');
                     '\tclass="stretch">  \n' +
                     '</myscript-text-web>'
                 }));
+                /*document.getElementById('bind-math').appendChild(RevealCSSSnippet({
+                    cssValue: 'var solvingZoneElement = document.getElementById("solving-zone"); \n' +
+                    'solvingZoneElement.classList.add("visible");\n' +
+                    'solvingZoneElement.addEventListener("myscript-math-web-result", function () {\n' +
+                    '\tvar result = solvingZoneElement.result["LATEX"];\n' +
+                    '\tif (result && result !== "" && result === "\\dfrac {x^{2}} {2}") {\n' +
+                    '\t\tshowBravo();\n' +
+                    '\t}\n'+
+                    '});\n'
+                }));*/
             }
             }
         ]
@@ -329,6 +363,36 @@ var languages = document.getElementById('languages');
         // event.previousSlide, event.currentSlide, event.indexh, event.indexv
         //console.log("SLide nb : "+event.currentSlide);
 
+    });
+
+    function showBravo(){
+        var solvingZoneElement = document.getElementById('solving-zone');
+        solvingZoneElement.classList.toggle('visible');
+        solvingZoneElement.classList.add('hidden');
+        var bravoH1 = document.getElementById('bravo');
+        bravoH1.classList.toggle('visible');
+        bravoH1.classList.toggle('hidden');
+        var exerciseTitle = document.getElementById('exercise-title');
+        exerciseTitle.classList.toggle('visible');
+        exerciseTitle.classList.toggle('hidden');
+    }
+
+    window.addEventListener('WebComponentsReady', function(e) {
+        //Just
+        katex.render('\\dfrac {2x^{2}} {4}', document.getElementById('equation-to-solve'));
+
+        //Binding the myscript-math-web-result event to then compare the recognized latex with the expected one.
+        var solvingZoneElement = document.getElementById("solving-zone");
+        solvingZoneElement.classList.add("visible");
+
+        solvingZoneElement.addEventListener("myscript-math-web-result", function () {
+
+            var result = solvingZoneElement.result["LATEX"];
+            console.log(result);
+                if (result && result !== "" && result === "\\dfrac {x^{2}} {2}") {
+                    showBravo();
+                }
+        });
     });
 
 </script>
