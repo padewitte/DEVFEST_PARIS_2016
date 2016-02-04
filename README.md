@@ -26,6 +26,7 @@ Some reveal.js features, like external Markdown and speaker notes, require that 
 6. Install dependencies
    ```sh
    $ npm install
+   $ bower install
    ```
 
 7. Serve the presentation and monitor source files for changes
