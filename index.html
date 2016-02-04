@@ -254,8 +254,7 @@ solvingZoneElement.classList.add("visible");
 solvingZoneElement.addEventListener("myscript-math-web-result",
     function () {
         var result = solvingZoneElement.result["LATEX"];
-        if (result && result !== ""
-                && result === "\\dfrac {x^{2}} {2}") {
+        if (result === "\\dfrac {x^{2}} {2}") {
             hideElementAndShowBravo();
         }
     }
@@ -402,7 +401,7 @@ solvingZoneElement.addEventListener("myscript-math-web-result",
 
             var result = solvingZoneElement.result["LATEX"];
             console.log(result);
-                if (result && result !== "" && result === "\\dfrac {x^{2}} {2}") {
+                if (result === "\\dfrac {x^{2}} {2}") {
                     hideElementAndShowBravo();
                 }
         });
