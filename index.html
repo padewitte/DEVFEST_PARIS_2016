@@ -46,13 +46,17 @@
     <link rel="import" href="bower_components/myscript-math-web/myscript-math-web.html">
     <link rel="import" href="bower_components/myscript-text-web/myscript-text-web.html">
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.js"></script>
     <style>
-        #editor {
-            position: absolute;
-            width: 500px;
-            height: 400px;
-            text-align: left;
+        canvas[id^=ms-rendering-canvas] {
+            /* Credit http://lea.verou.me/css3patterns/#blueprint-grid
+                #269 -> white */
+            background-color:white;
+            background-image: linear-gradient(#0060A0 2px, transparent 2px),
+            linear-gradient(90deg, #0060A0 2px, transparent 2px),
+            linear-gradient(rgba(34, 102, 153,.3) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(34, 102, 153,.3) 1px, transparent 1px);
+            background-size:100px 100px, 100px 100px, 20px 20px, 20px 20px;
+            background-position:-2px -2px, -2px -2px, -1px -1px, -1px -1px
         }
     </style>
 </head>
@@ -71,8 +75,8 @@
             <br/>
             <br/>
             <div class="logo-container sub">
-                <img class=logo" height="250px" width="625px" src="img/myscript.svg">
-                <img class=logo" height="250px" width="625px" src="img/logodevfest.svg">
+                <img class=logo" height="200px" width="500px" src="img/myscript.svg">
+                <img class=logo" height="200px" width="500px" src="img/logodevfest.svg">
             </div>
         </section>
         <section>
@@ -231,7 +235,7 @@ var languages = document.getElementById('languages');
         <section id="mathTargetElement">
         </section>
         <section>
-            <h3 id="exercise-title" class="visible" >Résoudre l'équation suivante <span id="equation-to-solve"></span></h3>
+            <h3 id="exercise-title" class="visible" >Simplifier l'équation suivante <span id="equation-to-solve"></span></h3>
             <myscript-math-web id="solving-zone"
                 applicationkey="22eda92c-10af-40d8-abea-fd4093c17d81"
                 hmackey="a1fa759f-b3ce-4091-9fd4-d34bb870c601"
@@ -243,14 +247,19 @@ var languages = document.getElementById('languages');
         </section>
         <section id="bind-math">
             <pre><code>
-var solvingZoneElement = document.getElementById("solving-zone");
+var solvingZoneElement
+    = document.getElementByTagName("myscript-math-web")[0];
+
 solvingZoneElement.classList.add("visible");
-solvingZoneElement.addEventListener("myscript-math-web-result", function () {
-    var result = solvingZoneElement.result["LATEX"];
-    if (result && result !== "" && result === "\\dfrac {x^{2}} {2}") {
-        showBravo();
+solvingZoneElement.addEventListener("myscript-math-web-result",
+    function () {
+        var result = solvingZoneElement.result["LATEX"];
+        if (result && result !== ""
+                && result === "\\dfrac {x^{2}} {2}") {
+            hideElementAndShowBravo();
+        }
     }
-});
+);
             </code></pre>
         </section>
         <section data-background-image="img/GitHub_Logo.png" data-background-size="50%">
@@ -287,8 +296,8 @@ solvingZoneElement.addEventListener("myscript-math-web-result", function () {
     // Full list of configuration options available at:
     // https://github.com/hakimel/reveal.js#configuration
     Reveal.initialize({
-        height: 768,
-        width: 1360,
+        height: 614,
+        width: 1088,
         touch: true,
 
         controls: true,
@@ -365,7 +374,7 @@ solvingZoneElement.addEventListener("myscript-math-web-result", function () {
 
     });
 
-    function showBravo(){
+    function hideElementAndShowBravo(){
         var solvingZoneElement = document.getElementById('solving-zone');
         solvingZoneElement.classList.toggle('visible');
         solvingZoneElement.classList.add('hidden');
@@ -390,7 +399,7 @@ solvingZoneElement.addEventListener("myscript-math-web-result", function () {
             var result = solvingZoneElement.result["LATEX"];
             console.log(result);
                 if (result && result !== "" && result === "\\dfrac {x^{2}} {2}") {
-                    showBravo();
+                    hideElementAndShowBravo();
                 }
         });
     });
